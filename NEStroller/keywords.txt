@@ -7,6 +7,7 @@ NEStroller	KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
+
 begin	KEYWORD2
 updateButtons	KEYWORD2
 getButtonPressed	KEYWORD2
@@ -15,7 +16,6 @@ getButtons	KEYWORD2
 ######################################
 # Constants (LITERAL1)
 #######################################
-NES_BUTTON_UP	LITERAL1
 
 NES_BUTTON_UP	LITERAL1
 NES_BUTTON_DOWN	LITERAL1
