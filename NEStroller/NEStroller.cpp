@@ -8,7 +8,7 @@
 #include "Arduino.h"
 #include "NEStroller.h"
 
-#define TIMING_DELAY    10
+#define TIMING_DELAY    12
 
 NEStroller::NEStroller() {
 
@@ -26,34 +26,18 @@ void NEStroller::begin(int pinClock, int pinLatch, int pinDataIn) {
 }
 
 void NEStroller::updateButtons() {
+  // reset button states
   _button_states = 0;
 
-  // default all pins to low
-  digitalWrite(_pin_latch, LOW);
-  digitalWrite(_pin_clock, LOW);
-
-  // instruct the controller to latch (read the buttons states and store them)
+  // Pulse the latch (aka strobe pin)
   digitalWrite(_pin_latch, HIGH);
-
-  // wait for the data to be ready
   delayMicroseconds(TIMING_DELAY);
-  
-  // release the latch to begin transferring data. the first state will be immediately 
-  // available on the data in / strobe line.
   digitalWrite(_pin_latch, LOW);
 
-  // wait for the data to be ready
-  delayMicroseconds(TIMING_DELAY);
-
-  // Store if the A button is pressed (first bit out of the shift register)
-  _button_states = digitalRead(_pin_data_in);
-
-  // loop through the remaining 7 buttons
-  for (int buttons = 1; buttons <= 7; buttons++) {
-    digitalWrite(_pin_clock, HIGH);
+  for (int buttons = 7; buttons >= 0; buttons--) {
+    _button_states |= digitalRead(_pin_data_in) << buttons;
     delayMicroseconds(TIMING_DELAY);
-    _button_states = _button_states << 1;
-    _button_states = _button_states + digitalRead(_pin_data_in) ;
+    digitalWrite(_pin_clock, HIGH);
     delayMicroseconds(TIMING_DELAY);
     digitalWrite(_pin_clock, LOW);
   }
