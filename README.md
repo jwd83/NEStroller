@@ -24,7 +24,7 @@ In your loop simply make a call to the updateButtons method to get the controlle
 Once updated simply make a call to getButtonPressed with one of the button constants to
 see if it has been pressed.
 
-    myController.getButtonPressed(NES_BUTTON_UP)
+    if (myController.getButtonPressed(NES_BUTTON_UP)) Serial.print("UP, ");
     
 The button constants are...
 
