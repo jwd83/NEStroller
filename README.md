@@ -1,6 +1,11 @@
 # NEStroller
 A library to interface the classic NES controller
 
+# Installation
+
+Download NEStroller as a .zip from GitHub. Add it to your Arduino IDE via
+
+**Top Menu -> Sketch -> Include Library -> Add .ZIP Library**
 
 # Usage
 
