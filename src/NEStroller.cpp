@@ -8,7 +8,7 @@
 #include "Arduino.h"
 #include "NEStroller.h"
 
-#define TIMING_DELAY    12
+#define TIMING_DELAY    4
 
 NEStroller::NEStroller() {
 
@@ -18,7 +18,6 @@ void NEStroller::begin(int pinClock, int pinLatch, int pinDataIn) {
   _pin_clock = pinClock;
   _pin_latch = pinLatch;
   _pin_data_in = pinDataIn;
-
 
   pinMode(_pin_clock , OUTPUT);
   pinMode(_pin_latch , OUTPUT);
@@ -45,7 +44,6 @@ void NEStroller::updateButtons() {
 
 bool NEStroller::getButtonPressed(int button_requested) {
   return bitRead(_button_states, button_requested) == 0;
-
 }
 
 byte NEStroller::getButtons() {
