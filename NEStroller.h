@@ -2,7 +2,7 @@
   NEStroller
   A simple NES controller interface for the Arduino
   Jared De Blander
-  https://github.com/jared0x90
+  https://github.com/jwd83
 */
 
 #ifndef NESTROLLER_LIB
